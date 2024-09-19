@@ -1,0 +1,70 @@
+/* Global Styles - index.css */
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* General Body and HTML Styling */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #65d1f6 0%, #8588fd 100%);
+  color: #333;
+  transition: all 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+/* Button Defaults */
+button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #65d1f6;
+  box-shadow: 0px 8px 16px rgba(255, 127, 80, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #65d1f6;
+  box-shadow: 0px 10px 20px rgba(255, 99, 71, 0.4);
+}
+
+button:active {
+  transform: translateY(3px);
+}
+
+/* Input Fields Defaults */
+input[type="text"],
+select {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  width: 100%;
+  background: #ffffff;
+  color: #333;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 767px) {
+  .table th, .table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  h4 {
+    font-size: 2rem;
+  }
+}
