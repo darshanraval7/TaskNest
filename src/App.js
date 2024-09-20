@@ -14,7 +14,7 @@ function App() {
   
   const [userName, setUserName] = useState(() => {
     // Load user name from sessionStorage on first render
-    return sessionStorage.getItem("userName") || "My To-Do List";
+    return localStorage.getItem("userName") || "My To-Do List";
   });
   
   const [isEditingName, setIsEditingName] = useState(false);
@@ -28,7 +28,7 @@ function App() {
 
   // Save user name to sessionStorage whenever it changes
   useEffect(() => {
-    sessionStorage.setItem("userName", userName);
+    localStorage.setItem("userName", userName);
   }, [userName]);
 
   const addTask = (taskText, taskCategory, priority, dueDate) => {

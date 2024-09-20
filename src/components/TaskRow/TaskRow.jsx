@@ -7,8 +7,6 @@ const TaskRow = ({ task, index, onCheckboxChange, onDelete }) => {
     Low: 'bg-success text-white'
   };
 
-  console.log('Task: ',task);
-
   return (
     <tr className="task-row">
       <th scope="row">{index + 1}</th>

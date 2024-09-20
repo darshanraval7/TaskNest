@@ -19,7 +19,7 @@ const TodoForm = ({ addTask }) => {
   return (
     <form onSubmit={handleSubmit} className="todo-form table-body-wrapper">
       <div className="row">
-        <div className="col-md-3 mb-2-mobile">
+        <div className="col-md-3 col-sm-6 mb-2 mb-sm-0">
           <input
             type="text"
             className="form-control"
@@ -28,7 +28,7 @@ const TodoForm = ({ addTask }) => {
             onChange={(e) => setTaskText(e.target.value)}
           />
         </div>
-        <div className="col-md-3 mb-2-mobile">
+        <div className="col-md-3 col-sm-6 mb-2 mb-sm-0">
           <select
             className="form-select"
             value={taskCategory}
@@ -40,7 +40,7 @@ const TodoForm = ({ addTask }) => {
             <option value="Others">Others</option>
           </select>
         </div>
-        <div className="col-md-2 mb-2-mobile">
+        <div className="col-md-2 col-sm-6 mb-2 mb-sm-0">
           <input
             type="date"
             className="form-control"
@@ -48,7 +48,7 @@ const TodoForm = ({ addTask }) => {
             onChange={(e) => setDueDate(e.target.value)}
           />
         </div>
-        <div className="col-md-2 mb-2-mobile">
+        <div className="col-md-2 col-sm-6 mb-2 mb-sm-0">
           <select
             className="form-select"
             value={priority}
@@ -59,8 +59,8 @@ const TodoForm = ({ addTask }) => {
             <option value="Low">Low</option>
           </select>
         </div>
-        <div className="col-md-2">
-          <button className="btn btn-primary" type="submit">
+        <div className="col-md-2 col-sm-12">
+          <button className="btn btn-primary w-100" type="submit">
             Add Task
           </button>
         </div>
