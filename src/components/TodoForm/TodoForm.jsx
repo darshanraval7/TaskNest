@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const TodoForm = ({ addTask }) => {
   const [taskText, setTaskText] = useState("");
@@ -8,8 +9,13 @@ const TodoForm = ({ addTask }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!taskText.trim()) return;
-    addTask(taskText, taskCategory, priority, dueDate);
+    if (!taskText.trim()) return; // Prevent adding empty tasks
+
+    addTask(taskText.trim(), taskCategory, priority, dueDate);
+    resetForm();
+  };
+
+  const resetForm = () => {
     setTaskText("");
     setTaskCategory("Personal");
     setPriority("Medium");
@@ -26,6 +32,7 @@ const TodoForm = ({ addTask }) => {
             placeholder="Enter a new task"
             value={taskText}
             onChange={(e) => setTaskText(e.target.value)}
+            required // Ensure task text is filled
           />
         </div>
         <div className="col-md-3 col-sm-6 mb-2 mb-sm-0">
@@ -46,6 +53,7 @@ const TodoForm = ({ addTask }) => {
             className="form-control"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
+            min={new Date().toISOString().split("T")[0]} // Prevent past dates
           />
         </div>
         <div className="col-md-2 col-sm-6 mb-2 mb-sm-0">
@@ -67,6 +75,11 @@ const TodoForm = ({ addTask }) => {
       </div>
     </form>
   );
+};
+
+// Adding PropTypes for validation
+TodoForm.propTypes = {
+  addTask: PropTypes.func.isRequired,
 };
 
 export default TodoForm;

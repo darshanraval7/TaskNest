@@ -7,29 +7,20 @@ import ContactCard from './components/ContactCard/ContactCard';
 
 function App() {
   const [tasks, setTasks] = useState(() => {
-    // Load tasks from localStorage on first render
     const savedTasks = JSON.parse(localStorage.getItem("tasks"));
     return savedTasks || [];
   });
-  
+
   const [userName, setUserName] = useState(() => {
-    // Load user name from sessionStorage on first render
     return localStorage.getItem("userName") || "My To-Do List";
   });
-  
+
   const [isEditingName, setIsEditingName] = useState(false);
 
-  // Save tasks to localStorage whenever tasks array changes
   useEffect(() => {
-    if (tasks.length > 0) {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
-  }, [tasks]);
-
-  // Save user name to sessionStorage whenever it changes
-  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
     localStorage.setItem("userName", userName);
-  }, [userName]);
+  }, [tasks, userName]);
 
   const addTask = (taskText, taskCategory, priority, dueDate) => {
     const newTask = {
@@ -41,40 +32,35 @@ function App() {
       dueDate,
       completed: false,
     };
-    setTasks([newTask, ...tasks]);
+    setTasks(prevTasks => [newTask, ...prevTasks]);
   };
 
   const handleCheckboxChange = (taskId) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) {
-        task.completed = !task.completed;
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
+    setTasks(prevTasks =>
+      prevTasks.map(task =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
+    );
   };
 
   const handleDelete = (taskId) => {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(updatedTasks);
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
   };
 
-  // Check for tasks with approaching due dates
   useEffect(() => {
     const checkReminders = () => {
       const now = new Date();
-      tasks.forEach((task) => {
+      tasks.forEach(task => {
         if (task.dueDate && !task.completed) {
           const dueDate = new Date(task.dueDate);
-          const timeDifference = dueDate - now;
-          const hoursLeft = Math.floor(timeDifference / (1000 * 60 * 60));
+          const hoursLeft = Math.floor((dueDate - now) / (1000 * 60 * 60));
           if (hoursLeft < 24 && hoursLeft > 0) {
             alert(`Reminder: Task "${task.text}" is due in ${hoursLeft} hours.`);
           }
         }
       });
     };
-    const intervalId = setInterval(checkReminders, 60 * 60 * 1000); // Check every hour
+    const intervalId = setInterval(checkReminders, 60 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, [tasks]);
 
