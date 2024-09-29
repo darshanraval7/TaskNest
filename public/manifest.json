@@ -1,6 +1,7 @@
 {
   "short_name": "TaskNest Pro",
   "name": "TaskNest Pro: Your Ultimate To-Do List App for Productivity",
+  "description": "A modern task management app to boost productivity.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,7 +19,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

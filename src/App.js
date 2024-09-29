@@ -7,8 +7,13 @@ import ContactCard from './components/ContactCard/ContactCard';
 
 function App() {
   const [tasks, setTasks] = useState(() => {
-    const savedTasks = JSON.parse(localStorage.getItem("tasks"));
-    return savedTasks || [];
+    try {
+      const savedTasks = localStorage.getItem("tasks");
+      return savedTasks ? JSON.parse(savedTasks) : [];
+    } catch (error) {
+      console.error("Error parsing tasks from localStorage:", error);
+      return [];
+    }
   });
 
   const [userName, setUserName] = useState(() => {
